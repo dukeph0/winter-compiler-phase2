@@ -1,0 +1,7 @@
+*.o
+*.dot
+*.output
+miniL
+miniL-lex.c
+miniL-parser.c
+miniL-parser.h
