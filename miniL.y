@@ -1,23 +1,21 @@
     /* cs152-miniL phase2 */
 %{
   #include "stdio.h"
-
-void yyerror(const char *msg);
+  void yyerror(const char *msg);
+  extern int row, col;
 %}
 
 %union{
   /* put your types here */
-
-char* ident_val;
-int num_val;
-
+  char* ident_val;
+  int num_val;
 }
 
 %error-verbose
 %locations
 
 /* %start program */
-%start Program
+%start prog_start
 %% 
 
   /* write your rules here */
@@ -57,6 +55,8 @@ int num_val;
 %left GT
 %left LTE
 %left GTE
+%token <num_val> NUMBER
+%token <ident_val> IDENT
 %token SEMICOLON
 %token COLON
 %token COMMA
@@ -65,7 +65,10 @@ int num_val;
 %token L_SQUARE_BRACKET
 %token R_SQUARE_BRACKET
 %left ASSIGN
+
 %% 
+
+
 
 int main(int argc, char **argv) {
    yyparse();
