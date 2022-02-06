@@ -4,6 +4,7 @@
    
 %{   
    /* write your C code here for definitions of variables and including headers */
+   
    int col = 1, row = 1;
 %}
 
@@ -24,59 +25,59 @@ INVALID2       {IDENTIFIER}"_"
 %%
    /* specific lexer rules in regex - FROM OUTPUT FORMAT FOR LEX ANALYZER PDF*/
 
-function       {printf("FUNCTION\n");col += yyleng;}
-beginparams    {printf("BEGIN_PARAMS\n");col += yyleng;}
-endparams      {printf("END_PARAMS\n");col += yyleng;}
-beginlocals    {printf("BEGIN_LOCALS\n");}col += yyleng;
-endlocals      {printf("END_LOCALS\n");col += yyleng;}
-beginbody      {printf("BEGIN_BODY\n");col += yyleng;}
-endbody        {printf("END_BODY\n");col += yyleng;}
-integer        {printf("INTEGER\n");col += yyleng;}
-array          {printf("ARRAY\n");col += yyleng;}
-of             {printf("OF\n");col += yyleng;}
-if             {printf("IF\n");col += yyleng;}
-then           {printf("THEN\n");col += yyleng;}
-endif          {printf("ENDIF\n");col += yyleng;}
-else           {printf("ELSE\n");col += yyleng;}
-while          {printf("WHILE\n");col += yyleng;}
-do             {printf("DO\n");col += yyleng;}
-beginloop      {printf("BEGINLOOP\n");col += yyleng;}
-endloop        {printf("ENDLOOP\n");col += yyleng;}
-continue       {printf("CONTINUE\n");col += yyleng;}
-break          {printf("BREAK\n");col += yyleng;}
-read           {printf("READ\n");col += yyleng;}
-write          {printf("WRITE\n");col += yyleng;}
-not            {printf("NOT\n");col += yyleng;}
-true           {printf("TRUE\n");col += yyleng;}
-false          {printf("FALSE\n");col += yyleng;}
-return         {printf("RETURN\n");col += yyleng;}
-"-"            {printf("MINUS\n");col += yyleng;}
-"+"            {printf("PLUS\n");col += yyleng;}
-"*"            {printf("MULT\n");col += yyleng;}
-"/"            {printf("DIV\n");col += yyleng;}
-"%"            {printf("MOD\n");col += yyleng;}
-"=="           {printf("EQ\n");col += yyleng;}
-"<>"           {printf("NEQ\n");col += yyleng;}
-"<"            {printf("LT\n");col += yyleng;}
-">"            {printf("GT\n");col += yyleng;}
-"<="           {printf("LTE\n");col += yyleng;}
-">="           {printf("GTE\n");col += yyleng;}
-{IDENTIFIER}+  {printf("IDENT %s\n", yytext);col += yyleng;}
-{NUMBER}+      {printf("NUMBER %s\n", yytext);col += yyleng;}
+function       {col += yyleng; return FUNCTION;}
+beginparams    {col += yyleng; return BEGIN_PARAMS;}
+endparams      {col += yyleng; return END_PARAMS;}
+beginlocals    {col += yyleng; return BEGIN_LOCALS;}
+endlocals      {col += yyleng; return END_LOCALS;}
+beginbody      {col += yyleng; return BEGIN_BODY;}
+endbody        {col += yyleng; return END_BODY;}
+integer        {col += yyleng; return INTEGER;}
+array          {col += yyleng; return ARRAY;}
+of             {col += yyleng; return OF;}
+if             {col += yyleng; return IF;}
+then           {col += yyleng; return THEN;}
+endif          {col += yyleng; return ENDIF;}
+else           {col += yyleng; return ELSE;}
+while          {col += yyleng; return WHILE;}
+do             {col += yyleng; return DO;}
+beginloop      {col += yyleng; return BEGINLOOP;}
+endloop        {col += yyleng; return ENDLOOP;}
+continue       {col += yyleng; return CONTINUE;}
+break          {col += yyleng; return BREAK;}
+read           {col += yyleng; return READ;}
+write          {col += yyleng; return WRITE;}
+not            {col += yyleng; return NOT;}
+true           {col += yyleng; return TRUE;}
+false          {col += yyleng; return FALSE;}
+return         {col += yyleng; return RETURN;}
+"-"            {col += yyleng; return SUB;}
+"+"            {col += yyleng; return ADD;}
+"*"            {col += yyleng; return MULT;}
+"/"            {col += yyleng; return DIV;}
+"%"            {col += yyleng; return MOD;}
+"=="           {col += yyleng; return EQ;}
+"<>"           {col += yyleng; return NEQ;}
+"<"            {col += yyleng; return LT;}
+">"            {col += yyleng; return GT;}
+"<="           {col += yyleng; return LTE;}
+">="           {col += yyleng; return GTE;}
+{IDENTIFIER}+  {col += yyleng; return IDENT;} //yytext should be sent to the .y file
+{NUMBER}+      {col += yyleng; return NUMBER;}
 {INVALID1}	   {printf("Error at line %d, column %d identifier \"%s\" must begin with a letter\n",row,col,yytext);exit(0);}
 {INVALID2}  	{printf("Error at line %d, column %d identifier \"%s\" cannot end with an underscore\n",row,col,yytext);exit(0);}
-";"            {printf("SEMICOLON\n");col += yyleng;}
-":"            {printf("COLON\n");col += yyleng;}
-","            {printf("COMMA\n");col += yyleng;}
-"("            {printf("L_PAREN\n");col += yyleng;}
-")"            {printf("R_PAREN\n");col += yyleng;}
-"["            {printf("L_SQUARE_BRACKET\n");col += yyleng;}
-"]"            {printf("R_SQUARE_BRACKET\n");col += yyleng;}
-":="           {printf("ASSIGN\n");col += yyleng;}
+";"            {col += yyleng; return SEMICOLON;}
+":"            {col += yyleng; return COLON;}
+","            {col += yyleng; return COMMA;}
+"("            {col += yyleng; return R_PAREN;}
+")"            {col += yyleng; return L_PAREN;}
+"["            {col += yyleng; return R_SQUARE_BRACKET;}
+"]"            {col += yyleng; return L_SQUARE_BRACKET;}
+":="           {col += yyleng; return ASSIGN;}
 {COMMENT}      {col += yyleng;}
 [ \t]+         {col += yyleng;}
 "\n"           {row++; col = 1;}
-.              {printf("Error at line %d, column %d unrecognized symbol \"%s\" \n",row,col,yytext);exit(0);}
+.              {printf("Error at line %d, column %d unrecognized symbol \"%s\" in lexer\n",row,col,yytext);exit(0);}
 %%
 	/* C functions used in lexer */
 
