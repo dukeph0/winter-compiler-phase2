@@ -1,12 +1,15 @@
     /* cs152-miniL phase2 */
 %{
+  #include "stdio.h"
+
 void yyerror(const char *msg);
 %}
 
 %union{
   /* put your types here */
-char* <ident_val> IDENT
-int <num_val> NUMBER
+
+char* ident_val;
+int num_val;
 
 }
 

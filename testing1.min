@@ -1,8 +1,9 @@
-function test1;
+function main;
 beginparams
 endparams
 beginlocals
-2n : integer;
+a : integer;
 endlocals
 beginbody
+a = 1 + 2 * 3;
 endbody
