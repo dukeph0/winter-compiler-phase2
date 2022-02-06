@@ -1,10 +1,14 @@
     /* cs152-miniL phase2 */
 %{
+  #include "stdio.h"
+
 void yyerror(const char *msg);
 %}
 
 %union{
   /* put your types here */
+  
+
 }
 
 %error-verbose
