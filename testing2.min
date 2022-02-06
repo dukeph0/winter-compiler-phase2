@@ -1,8 +1,9 @@
-function test2;
+function main;
 beginparams
 endparams
 beginlocals
-n_ : integer;
+a integer;
 endlocals
-beginprogram
-endprogram
+beginbody
+a := 1 + 2 * 3;
+endbody
