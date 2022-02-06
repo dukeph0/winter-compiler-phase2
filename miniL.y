@@ -68,7 +68,29 @@
 
 %% 
 
+Program:  
+{printf("Program -> epsilon\n");}
+          | Function Program
+          {printf("Program -> Function Program\n);}
 
+Identifier: IDENT
+{printf("Identifier -> Ident\n");} | Ident COMMA Identifiers
+
+Identifiers: Identifier COMMA Identifiers
+{printf("Identifiers -> Indent\n");} | Identifier COMMA Identifiers
+
+
+Function: FUNCTION Ident SEMICOLON  BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+{printf("Function -> Ident SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY\n");}
+
+Functions: function functions
+{printf("function -> functions\n");} | function -> functions
+
+Declaration: Identifiers COLON INTEGER
+{printf("Declartion -> Identifiers COLON INTEGER\n");} | identifiers COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER
+
+Declarations: declaration -> SEMICOLON -> declarations
+{printf("declaration -> SEMICOLON -> declarations\n");} | declarations -> SEMICOLON -> declarations | declarations -> epsilon
 
 int main(int argc, char **argv) {
    yyparse();
