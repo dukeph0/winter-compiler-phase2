@@ -15,7 +15,7 @@
 %locations
 
 /* %start program */
-%start Program
+%start prog_start
 %% 
 
   /* write your rules here */
@@ -65,7 +65,7 @@
 %token L_SQUARE_BRACKET
 %token R_SQUARE_BRACKET
 %left ASSIGN
-%start prog_start
+
 %% 
 
 
