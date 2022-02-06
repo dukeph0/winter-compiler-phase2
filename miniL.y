@@ -121,7 +121,7 @@ Variable:   IDENT {printf("variable -> IDENT\n");}
 Variables:  Variable {printf("variables -> variable\n");}
             | Variable COMMA variables {printf("variables -> variable COMMA variables\n");}
             ;
-%% 
+ 
 int main(int argc, char **argv) {
    yyparse();
    return 0;
