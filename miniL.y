@@ -117,9 +117,7 @@ BoolExpr2:  Expression Comp Expression{printf("boolexp2 -> expression comp expre
             | L_PAREN BoolExpr R_PAREN {printf("boolexpr2 -> L_PAREN boolexpr R_PAREN\n");}
             | TRUE {printf("boolexpr2 -> TRUE\n");}
             | FALSE {printf("boolexpr2 -> FALSE\n");}
-            | NOT TRUE {printf("boolexpr2 -> NOT TRUE\n");}
-            | NOT FALSE {printf("boolexpr2 -> NOT FALSE\n");}
-
+;
 /* Comparison */
 Comp:   EQ {printf("comp -> EQ\n");}
         | NEQ {printf("comp -> NEQ\n");}
