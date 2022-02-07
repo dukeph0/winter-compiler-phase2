@@ -4,8 +4,12 @@
    
 %{   
    /* write your C code here for definitions of variables and including headers */
+   #include <stdio.h>
+   #include <stdlib.h>
    #include "y.tab.h"
    #define YY_DECL int yylex()
+  #include "y.tab.h"
+
    int col = 1, row = 1;
 %}
 
@@ -70,8 +74,8 @@ return         {col += yyleng; return RETURN;}
 ";"            {col += yyleng; return SEMICOLON;}
 ":"            {col += yyleng; return COLON;}
 ","            {col += yyleng; return COMMA;}
-"("            {col += yyleng; return R_PAREN;}
-")"            {col += yyleng; return L_PAREN;}
+"("            {col += yyleng; return L_PAREN;}
+")"            {col += yyleng; return R_PAREN;}
 "["            {col += yyleng; return R_SQUARE_BRACKET;}
 "]"            {col += yyleng; return L_SQUARE_BRACKET;}
 ":="           {col += yyleng; return ASSIGN;}
