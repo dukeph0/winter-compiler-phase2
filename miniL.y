@@ -16,9 +16,6 @@
 
 /* %start program */
 %start prog_start
-%% 
-
-  /* write your rules here */
 %token FUNCTION
 %token BEGIN_PARAMS
 %token END_PARAMS
@@ -66,7 +63,8 @@
 %token R_SQUARE_BRACKET
 %left ASSIGN
 
-%% 
+%%
+  /* write your rules here */
 /*Start*/
 prog_start:  Functions {printf("prog_start -> functions\n");}
             | {printf("prog_start -> epsilon\n);}
@@ -154,4 +152,5 @@ int main(int argc, char **argv) {
 
 void yyerror(const char *msg) {
     /* implement your error handling */
+    printf("Error at line %d, column %d unrecognized symbol \"%s\" \n",row,col,msg);
 }
