@@ -108,7 +108,7 @@ Statements:   Statement SEMICOLON Statements {printf("statements -> statement SE
 BoolExpr: BoolExpr2 {printf("boolexpr -> boolexpr2\n");}
           | NOT BoolExpr2 {printf("boolexpr -> NOT boolexpr2\n");}
 ;
-BoolExpr2:  Expression Comp Espression{printf("boolexp2 -> expression comp expression\n");}
+BoolExpr2:  Expression Comp Expression{printf("boolexp2 -> expression comp expression\n");}
             | L_PAREN BoolExpr R_PAREN {printf("boolexpr2 -> L_PAREN boolexpr R_PAREN\n");}
             | TRUE {printf("boolexpr2 -> TRUE\n");}
             | FALSE {printf("boolexpr2 -> FALSE\n");}
