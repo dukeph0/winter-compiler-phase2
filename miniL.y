@@ -145,11 +145,11 @@ MultiplicativeExpr:   Term {printf("multiplicativeexpr -> term\n");}
 Term:   Variable {printf("term -> variable\n");}
         | NUMBER {printf("term -> NUMBER\n");}
         | L_PAREN Expression R_PAREN {printf("term -> L_PAREN expression R_PAREN\n");}
-        | Identifier L_PAREN Expressions R_PAREN {printf("term -> IDENT L_PAREN expressions R_PAREN\n");}
+        | IDENT L_PAREN Expressions R_PAREN {printf("term -> IDENT L_PAREN expressions R_PAREN\n");}
 ;
 /*Variable and Variables*/
-Variable:   Identifier {printf("variable -> IDENT\n");}
-            | Identifier L_SQUARE_BRACKET Expression R_SQUARE_BRACKET {printf("variable -> IDENT L_SQUARE_BRACKET expression R_SQUARE_BRACKET\n");}
+Variable:   IDENT {printf("variable -> IDENT\n");}
+            | IDENT L_SQUARE_BRACKET Expression R_SQUARE_BRACKET {printf("variable -> IDENT L_SQUARE_BRACKET expression R_SQUARE_BRACKET\n");}
 ;
 Variables:  Variable {printf("variables -> variable\n");}
             | Variable COMMA Variables {printf("variables -> variable COMMA variables\n");}
@@ -157,7 +157,7 @@ Variables:  Variable {printf("variables -> variable\n");}
 
 %%
 int main(int argc, char **argv) {
-    yyin = fopen(argv[1], "r");
+  yyin = fopen(argv[1], "r");
    yyparse();
    return 0;
 }
