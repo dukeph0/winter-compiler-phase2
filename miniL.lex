@@ -4,7 +4,8 @@
    
 %{   
    /* write your C code here for definitions of variables and including headers */
-   
+   #include "y.tab.h"
+   #define YY_DECL int yylex()
    int col = 1, row = 1;
 %}
 
@@ -62,8 +63,8 @@ return         {col += yyleng; return RETURN;}
 ">"            {col += yyleng; return GT;}
 "<="           {col += yyleng; return LTE;}
 ">="           {col += yyleng; return GTE;}
-{IDENTIFIER}+  {col += yyleng; return IDENT;} //yytext should be sent to the .y file
-{NUMBER}+      {col += yyleng; return NUMBER;}
+{IDENTIFIER}+  {col += yyleng; yylval.ident_val = yytext; return IDENT;} //yytext should be sent to the .y file
+{NUMBER}+      {col += yyleng; yylval.num_val = atoi(yytext); return NUMBER;}
 {INVALID1}	   {printf("Error at line %d, column %d identifier \"%s\" must begin with a letter\n",row,col,yytext);exit(0);}
 {INVALID2}  	{printf("Error at line %d, column %d identifier \"%s\" cannot end with an underscore\n",row,col,yytext);exit(0);}
 ";"            {col += yyleng; return SEMICOLON;}
