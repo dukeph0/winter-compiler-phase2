@@ -2,6 +2,7 @@
 %{
   #include "stdio.h"
   void yyerror(const char *msg);
+  extern int yylex(); //To read in the yylex from the .lex
   extern int row, col;
 %}
 
@@ -41,8 +42,8 @@
 %token TRUE
 %token FALSE
 %token RETURN
-%left MINUS
-%left PLUS
+%left SUB
+%left ADD
 %left MULT
 %left DIV
 %left MOD
@@ -67,7 +68,7 @@
   /* write your rules here */
 /*Start*/
 prog_start:  Functions {printf("prog_start -> functions\n");}
-            | {printf("prog_start -> epsilon\n);}
+            | {printf("prog_start -> epsilon\n");}
 ;
 /*Identifier and Identifiers*/
 Identifier: IDENT {printf("Identifier -> IDENT\n");} 
@@ -80,7 +81,7 @@ Function: FUNCTION IDENT SEMICOLON  BEGIN_PARAMS Declarations END_PARAMS BEGIN_L
 {printf("function -> IDENT SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY\n");}
 ;
 Functions: Function Functions
-{printf("function -> functions\n");} | {printf("functions -> epsilon\n);}
+{printf("function -> functions\n");} | {printf("functions -> epsilon\n");}
 ;
 /*Declartion and Declarations*/
 Declaration: Identifiers COLON INTEGER
@@ -141,7 +142,7 @@ Variable:   IDENT {printf("variable -> IDENT\n");}
             | IDENT L_SQUARE_BRACKET Expression R_SQUARE_BRACKET {printf("variable -> IDENT L_SQUARE_BRACKET expression R_SQUARE_BRACKET\n");}
 ;
 Variables:  Variable {printf("variables -> variable\n");}
-            | Variable COMMA variables {printf("variables -> variable COMMA variables\n");}
+            | Variable COMMA Variables {printf("variables -> variable COMMA variables\n");}
 ;
 
 %%
