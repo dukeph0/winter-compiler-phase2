@@ -71,27 +71,27 @@ extern int yydebug;
     TRUE = 281,
     FALSE = 282,
     RETURN = 283,
-    SUB = 284,
-    ADD = 285,
-    MULT = 286,
-    DIV = 287,
-    MOD = 288,
-    EQ = 289,
-    NEQ = 290,
-    LT = 291,
-    GT = 292,
-    LTE = 293,
-    GTE = 294,
-    NUMBER = 295,
-    IDENT = 296,
-    SEMICOLON = 297,
-    COLON = 298,
-    COMMA = 299,
-    L_PAREN = 300,
-    R_PAREN = 301,
-    L_SQUARE_BRACKET = 302,
-    R_SQUARE_BRACKET = 303,
-    ASSIGN = 304
+    NUMBER = 284,
+    IDENT = 285,
+    SEMICOLON = 286,
+    COLON = 287,
+    COMMA = 288,
+    L_PAREN = 289,
+    R_PAREN = 290,
+    L_SQUARE_BRACKET = 291,
+    R_SQUARE_BRACKET = 292,
+    SUB = 293,
+    ADD = 294,
+    MULT = 295,
+    DIV = 296,
+    MOD = 297,
+    NEQ = 298,
+    EQ = 299,
+    ASSIGN = 300,
+    LT = 301,
+    GT = 302,
+    LTE = 303,
+    GTE = 304
   };
 #endif
 
@@ -100,7 +100,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 9 "miniL.y" /* yacc.c:1909  */
+#line 10 "miniL.y" /* yacc.c:1909  */
 
   /* put your types here */
   char* ident_val;
