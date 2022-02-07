@@ -1,0 +1,85 @@
+﻿Identifier: 
+1. IDENT //Must print the identifier
+Identifiers:
+1.  Identifier COMMA identifiers 
+2. Identifier 
+
+
+Function:
+1. FUNCTION IDENT  SEMICOLON  BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+Functions:
+2. function functions 
+3. epsilon
+
+
+Declaration:
+1. identifiers COLON  INTEGER
+2. identifiers COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_Bracket OF INTEGER
+Declarations: 
+1. declaration -> SEMICOLON -> declarations 
+   1. This will include also the -> epsilon
+Statement:
+1. variable -> ASSIGN -> expression
+2. IF -> boolexpr -> THEN -> statements -> ENDIF
+3. IF -> boolexpr -> THEN -> statements -> ELSE -> statements -> ENDIF
+4. WHILE -> boolexpr -> BEGINLOOP -> statements -> ENDLOOP
+5. DO -> BEGINLOOP -> statements -> ENDLOOP -> WHILE -> boolexpr
+6. READ -> vars
+7. WRITE -> vars
+8. CONTINUE
+9. RETURN expression
+Statements:
+1. statement -> SEMICOLON -> statements
+
+
+BoolExpr: 
+1. boolexpr2
+2. NOT boolexpr2
+BoolExpr2:
+1. expression comp expression 
+2. L_PAREN boolexpr R_PAREN
+3. TRUE
+4. FALSE
+
+
+Comp:
+1. EQ
+2. NEQ
+3. LT
+4. GT
+5. LTE
+6. GTE
+
+
+Expression:
+1. multiplicativeexpr 
+2. multiplicativeexpr ADD multiplicativeexpr
+3. multiplicativeexpr SUB multiplicativeexpr
+Expressions:
+1. expression
+2. expression COMMA expressions
+3. epsilon
+
+
+MultiplicativeExpr:
+1. term
+2. term MOD multiplicativeexpr 
+3. term DIV multiplicativeexpr
+4. term MULT multiplicativeexpr
+
+
+Term:
+1. Variable
+2. NUMBER
+3. L_PAREN Expression R_PAREN
+4. identifier L_PAREN Expression R_PAREN
+
+
+Variable:
+1. identifier 
+2. identifier  L_SQUARE_BRACKET Expression R_SQUARE_BRACKET
+
+
+Variables:
+1. Variable
+2. Variable COMMA Varibales
