@@ -36,6 +36,7 @@
 %token BEGINLOOP
 %token ENDLOOP
 %token CONTINUE
+%token BREAK
 %token READ
 %token WRITE
 %right NOT
@@ -77,7 +78,7 @@ Identifiers: Identifier COMMA Identifiers
 {printf("Identifiers -> identifier COMMA identifier\n");} | Identifier {printf("Identifiers -> identifier\n");} 
 ;
 /*Function and Functions*/
-Function: FUNCTION IDENT SEMICOLON  BEGIN_PARAMS Declarations END_PARAMS BEGIN_LOCALS Declarations END_LOCALS BEGIN_BODY Statements END_BODY
+Function: FUNCTION Identifier SEMICOLON BEGIN_PARAMS Declarations END_PARAMS BEGIN_LOCALS Declarations END_LOCALS BEGIN_BODY Statements END_BODY
 {printf("function -> IDENT SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY\n");}
 ;
 Functions: Function Functions

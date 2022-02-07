@@ -81,10 +81,10 @@ return         {col += yyleng; return RETURN;}
 .              {printf("Error at line %d, column %d unrecognized symbol \"%s\" in lexer\n",row,col,yytext);exit(0);}
 %%
 	/* C functions used in lexer */
-
+/*
 int main(int argc, char ** argv)
 {
    yyin = fopen(argv[1], "r");
    yylex();
    fclose(yyin);
-}
+}*/
