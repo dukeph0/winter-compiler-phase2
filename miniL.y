@@ -148,7 +148,7 @@ Term:   Variable {printf("term -> variable\n");}
         | IDENT L_PAREN Expressions R_PAREN {printf("term -> IDENT L_PAREN expressions R_PAREN\n");}
 ;
 /*Variable and Variables*/
-Variable:   IDENT {printf("variable -> IDENT\n");}
+Variable:   IDENT {printf("variable -> IDENT %s \n", $1);}
             | IDENT L_SQUARE_BRACKET Expression R_SQUARE_BRACKET {printf("variable -> IDENT L_SQUARE_BRACKET expression R_SQUARE_BRACKET\n");}
 ;
 Variables:  Variable {printf("variables -> variable\n");}
