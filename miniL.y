@@ -1,4 +1,4 @@
-    /* cs152-miniL phase2 project*/
+   /* cs152-miniL phase2 project*/
 %{
   #include "stdio.h"
   void yyerror(const char *msg);
