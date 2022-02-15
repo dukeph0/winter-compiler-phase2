@@ -68,7 +68,6 @@
   /* write your rules here */
 /*Start*/
 prog_start:  Functions {printf("prog_start -> functions\n");}
-  | {printf("prog_start -> epsilon\n");}
 ;
 
 /*Identifier and Identifiers*/
@@ -79,7 +78,7 @@ Identifiers: Identifier COMMA Identifiers {printf("Identifiers -> identifier COM
 ;
 
 /*Function and Functions*/
-Function: FUNCTION IDENT SEMICOLON BEGIN_PARAMS Declarations END_PARAMS BEGIN_LOCALS Declarations END_LOCALS BEGIN_BODY Statements END_BODY
+Function: FUNCTION Identifier SEMICOLON BEGIN_PARAMS Declarations END_PARAMS BEGIN_LOCALS Declarations END_LOCALS BEGIN_BODY Statements END_BODY
 {printf("function -> IDENT SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY\n");}
 ;
 Functions: Function Functions {printf("function -> function functions\n");} 
@@ -100,8 +99,8 @@ Statement:    Variable ASSIGN Expression {printf("statement -> variable ASSIGN e
   | IF BoolExpr THEN Statements ELSE Statements ENDIF {printf("statement -> IF boolexpr THEN statments ELSE statements ENDIF\n");}
   | WHILE BoolExpr BEGINLOOP Statements ENDLOOP {printf("statement -> WHILE boolexpr BEGINLOOP statements ENDLOOP\n");}
   | DO BEGINLOOP Statements ENDLOOP WHILE BoolExpr {printf("statement -> DO BEGINLOOP statements ENDLOOP WHILE boolexpr\n");}
-  | READ Variables {printf("statement -> READ variables\n");}
-  | WRITE Variables {printf("statement -> WRITE variables\n");}
+  | READ Variable {printf("statement -> READ variables\n");}
+  | WRITE Variable {printf("statement -> WRITE variables\n");}
   | CONTINUE {printf("statement -> CONTINUE\n");}
   | BREAK {printf("statement -> BREAK\n");}
   | RETURN Expression {printf("statement -> RETURN expression\n");}
@@ -115,8 +114,6 @@ BoolExpr: BoolExpr2 {printf("boolexpr -> boolexpr2\n");}
 ;
 BoolExpr2:  Expression Comp Expression{printf("boolexp2 -> expression comp expression\n");}
             | L_PAREN BoolExpr R_PAREN {printf("boolexpr2 -> L_PAREN boolexpr R_PAREN\n");}
-            | TRUE {printf("boolexpr2 -> TRUE\n");}
-            | FALSE {printf("boolexpr2 -> FALSE\n");}
 ;
 /* Comparison */
 Comp:   EQ {printf("comp -> EQ\n");}
@@ -151,10 +148,6 @@ Term:   Variable {printf("term -> variable\n");}
 Variable:   IDENT {printf("variable -> IDENT %s \n", $1);}
             | IDENT L_SQUARE_BRACKET Expression R_SQUARE_BRACKET {printf("variable -> IDENT L_SQUARE_BRACKET expression R_SQUARE_BRACKET\n");}
 ;
-Variables:  Variable {printf("variables -> variable\n");}
-            | Variable COMMA Variables {printf("variables -> variable COMMA variables\n");}
-;
-
 %%
 int main(int argc, char **argv) {
   yyin = fopen(argv[1], "r");
