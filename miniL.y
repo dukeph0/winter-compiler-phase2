@@ -143,6 +143,7 @@ Term:   Variable {printf("term -> variable\n");}
         | NUMBER {printf("term -> NUMBER\n");}
         | L_PAREN Expression R_PAREN {printf("term -> L_PAREN expression R_PAREN\n");}
         | IDENT L_PAREN Expressions R_PAREN {printf("term -> IDENT L_PAREN expressions R_PAREN\n");}
+        | IDENT L_PAREN R_PAREN {printf("term -> IDENT L_PAREN R_PAREN\n");} 
 ;
 /*Variable and Variables*/
 Variable:   IDENT {printf("variable -> IDENT %s \n", $1);}
